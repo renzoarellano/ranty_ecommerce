@@ -1,33 +1,14 @@
 <template>
   <swiper ref="mySwiper" class="sliderContainer" :options="swiperOptions">
-    <swiper-slide>
-      <img
-        class="slideImage"
-        src="~/assets/images/banner.jpg"
-        alt="Banner Ejemplo"
-      />
-    </swiper-slide>
-    <swiper-slide>
-      <img
-        class="slideImage"
-        src="~/assets/images/banner.jpg"
-        alt="Banner Ejemplo"
-      />
-    </swiper-slide>
-    <swiper-slide>
-      <img
-        class="slideImage"
-        src="~/assets/images/banner.jpg"
-        alt="Banner Ejemplo"
-      />
-    </swiper-slide>
-    <swiper-slide>
-      <img
-        class="slideImage"
-        src="~/assets/images/banner.jpg"
-        alt="Banner Ejemplo"
-      />
-    </swiper-slide>
+    <div v-for="banner in banners" :key="banner.id" class="slideDimensions">
+      <swiper-slide>
+        <img
+          class="slideImage"
+          :src="imagesUrl + banner.image"
+          :alt="banner.title"
+        />
+      </swiper-slide>
+    </div>
     <div slot="pagination" class="swiper-pagination"></div>
     <div slot="button-prev" class="swiper-button-prev"></div>
     <div slot="button-next" class="swiper-button-next"></div>
@@ -53,7 +34,9 @@ export default {
           el: '.swiper-pagination',
           clickable: true
         }
-      }
+      },
+      banners: [],
+      imagesUrl: process.env.imagesUrl
     }
   },
   computed: {
@@ -62,17 +45,30 @@ export default {
     }
   },
   mounted() {
+    this.getBanners()
     this.swiper.slideTo(1, 300, false)
+  },
+  methods: {
+    async getBanners() {
+      const token = (await 'Bearer ') + this.$store.getters.getBrandData.token
+      const url = process.env.apiUrl + '/banner'
+      const headers = {
+        Authorization: token
+      }
+      this.banners = await this.$axios.$get(url, headers)
+    }
   }
 }
 </script>
 
 <style scoped>
-.slideImage {
+.slideImage,
+.slideDimensions {
   width: 100%;
   max-height: 800px;
 }
 .sliderContainer {
   width: 100%;
+  margin-top: 76px;
 }
 </style>

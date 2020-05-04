@@ -23,6 +23,10 @@ export default {
       }
     ]
   },
+  env: {
+    apiUrl: 'https://api.ranty.pe/commerce',
+    imagesUrl: 'https://custom.ranty.pe'
+  },
   /*
    ** Customize the progress-bar color
    */

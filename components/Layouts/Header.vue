@@ -1,18 +1,19 @@
 <template>
   <header class="col-12">
     <div class="brand-name">
-      <nuxt-link to="/">RANTY</nuxt-link>
+      <nuxt-link to="/">
+        <img class="logoIMG" :src="logo" :alt="name" />
+      </nuxt-link>
     </div>
     <div
       class="drawer-toggle"
       role="button"
-      @click="$store.dispatch('nav/toggleSidebar')"
+      @click="$store.dispatch('toggleSidebar')"
     >
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
-
     <div class="app-links col-6 col-md-11 col-lg-10">
       <app-links></app-links>
     </div>
@@ -21,7 +22,17 @@
 <script>
 import AppLinks from '~/components/Layouts/appLinks'
 export default {
-  components: { AppLinks }
+  components: { AppLinks },
+  props: {
+    logo: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 <style scoped>
@@ -62,6 +73,11 @@ header {
   padding-right: 10px;
   cursor: pointer;
 }
+.logoIMG {
+  max-width: 150px;
+  max-height: 65px;
+  margin: auto;
+}
 @media (max-width: 767px) {
   header {
     padding: 0 16px;
@@ -71,6 +87,9 @@ header {
   }
   .app-links {
     display: none;
+  }
+  .logoIMG {
+    max-height: 40px;
   }
 }
 @media (min-width: 768px) {

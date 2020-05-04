@@ -3,7 +3,7 @@
     <div
       v-if="toggleSidebar"
       class="backdrop"
-      @click="$store.dispatch('nav/toggleSidebar')"
+      @click="$store.dispatch('toggleSidebar')"
     ></div>
 
     <transition name="slide-side">
@@ -20,7 +20,8 @@ export default {
   components: { AppLinks },
   computed: {
     toggleSidebar() {
-      return this.$store.getters['nav/toggleSidebar']
+      console.log(this.$store.dispatch)
+      return this.$store.getters.toggleSidebar
     }
   }
 }

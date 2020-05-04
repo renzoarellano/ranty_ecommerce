@@ -1,23 +1,25 @@
-// States
-export const state = () => ({
-  toggleSidebar: false
-})
+/* import Vuex from 'vuex'
 
-// mutations
-export const mutations = {
-  TOGGLE_SIDEBAR(state) {
-    state.toggleSidebar = !state.toggleSidebar
-  }
+const toogleNav = () => {
+  return new Vuex.Store({
+    nav: {
+      state: () => ({
+        toggleSidebar: false
+      }),
+      mutations: {
+        toggleSidebar(state) {
+          state.toggleSidebar = !state.toggleSidebar
+        }
+      },
+      actions: {
+        toggleSidebar({ commit }) {
+          commit('toggleSidebar')
+        }
+      },
+      getters: {
+        toggleSidebar: (state) => state.toggleSidebar
+      }
+    }
+  })
 }
-
-// actions
-export const actions = {
-  toggleSidebar({ commit }) {
-    commit('TOGGLE_SIDEBAR')
-  }
-}
-
-// Getters
-export const getters = {
-  toggleSidebar: (state) => state.toggleSidebar
-}
+export default toogleNav */

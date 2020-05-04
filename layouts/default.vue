@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <Header />
+    <Header :logo="logoLink" :name="brandName" />
 
     <sideBar />
 
@@ -22,6 +22,17 @@ export default {
     Header,
     Footer,
     sideBar
+  },
+  data() {
+    return {
+      logoLink: '',
+      brandName: ''
+    }
+  },
+  mounted() {
+    this.logoLink =
+      process.env.imagesUrl + this.$store.getters.getBrandData.logo
+    this.brandName = this.$store.getters.getBrandData.name
   }
 }
 </script>

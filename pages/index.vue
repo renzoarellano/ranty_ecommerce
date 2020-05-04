@@ -9,6 +9,7 @@
 <script>
 import Carrousel from '~/components/Home/SwiperSlider'
 export default {
+  loading: false,
   components: {
     Carrousel
   }
